@@ -1,0 +1,586 @@
+/* =========================================================
+   EL SEWEDY INTERNATIONAL SCHOOL FOR APPLIED TECHNOLOGY
+   PREMIUM INSTITUTIONAL LIGHT THEME
+   ========================================================= */
+
+:root {
+  /* Official Elsewedy Brand Identity */
+  --primary-red: #DA1B1B;
+  --primary-red-hover: #BD1313;
+  --primary-red-bright: #EF3131;
+  --primary-red-subtle: rgba(218, 27, 27, 0.08);
+
+  /* Clean Institutional Palette */
+  --bg-body: #F8F9FB;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-alt: #F1F3F7;
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+
+  /* Typography Colors */
+  --text-heading: #111827;
+  --text-body: #374151;
+  --text-muted: #6B7280;
+
+  /* Contrast Dark (Footers & Dark Moments) */
+  --dark-bg: #141416;
+  --dark-surface: #1E1E22;
+  --dark-border: rgba(255, 255, 255, 0.1);
+
+  /* Geometry & Fonts */
+  --font-family: 'Rubik', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.03);
+  --shadow-red: 0 8px 20px -4px rgba(218, 27, 27, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.25;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Primary Button Styles */
+.sewedy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 26px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sewedy-btn-primary {
+  background-color: var(--primary-red);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-red);
+}
+
+.sewedy-btn-primary:hover {
+  background-color: var(--primary-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(218, 27, 27, 0.45);
+}
+
+.sewedy-btn-white {
+  background-color: #FFFFFF;
+  color: var(--primary-red);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.sewedy-btn-white:hover {
+  background-color: #F9FAFB;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sewedy-btn-outline {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+}
+
+.sewedy-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Section Header (Real institutional underline style) */
+.section-title-wrapper {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title-wrapper h2 {
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-wrapper.dark h2 {
+  color: #FFFFFF;
+}
+
+.section-title-wrapper h2::after {
+  content: '';
+  display: block;
+  width: 54px;
+  height: 4px;
+  background-color: var(--primary-red);
+  border-radius: 2px;
+  margin: 12px auto 0 auto;
+}
+
+.section-title-wrapper p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 12px auto 0 auto;
+}
+
+.section-title-wrapper.dark p {
+  color: #9CA3AF;
+}
+
+/* Card Style */
+.sewedy-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s ease;
+}
+
+.sewedy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #D1D5DB;
+}
+
+/* Filter Buttons */
+.tab-btn {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-heading);
+  border-color: #9CA3AF;
+}
+
+.tab-btn.active {
+  background-color: var(--primary-red);
+  color: #FFFFFF;
+  border-color: var(--primary-red);
+  box-shadow: 0 4px 12px rgba(218, 27, 27, 0.25);
+}
+
+/* Form Controls */
+.sewedy-input, .sewedy-textarea, .sewedy-select {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: var(--font-family);
+  color: var(--text-heading);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sewedy-input:focus, .sewedy-textarea:focus, .sewedy-select:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(218, 27, 27, 0.12);
+}
+
+/* Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #E5E7EB;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-red);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(218, 27, 27, 0.4);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-dialog {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Toast */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #1F2937;
+  color: #FFFFFF;
+  border-left: 4px solid var(--primary-red);
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  animation: toastSlide 0.3s ease-out;
+}
+
+@keyframes toastSlide {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* =========================================================
+   DYNAMIC ANIMATION SYSTEM & MICRO-INTERACTIONS
+   ========================================================= */
+
+/* Top Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #DA1B1B 0%, #EF3131 50%, #F59E0B 100%);
+  z-index: 99999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(218, 27, 27, 0.6);
+}
+
+/* Floating & Ambient Motion */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Radar Ping Beacon for Live Badges */
+@keyframes radarPing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(22, 163, 74, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}
+
+.beacon-pulse-green {
+  animation: radarPing 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes radarPingRed {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(218, 27, 27, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(218, 27, 27, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(218, 27, 27, 0);
+  }
+}
+
+.beacon-pulse-red {
+  animation: radarPingRed 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Bouncing Down Indicator */
+@keyframes bounceSlow {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 2.5s infinite;
+}
+
+/* Button Shimmer Sweep Effect */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: none;
+}
+
+.btn-shimmer:hover::after {
+  left: 140%;
+  transition: all 0.75s ease-in-out;
+}
+
+/* Card Interactive Lift & Glow */
+.card-interactive {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-interactive:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(218, 27, 27, 0.08);
+  border-color: rgba(218, 27, 27, 0.3);
+}
+
+/* Image Zoom on Card Hover */
+.img-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.img-zoom-container img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.img-zoom-container:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.04);
+}
+
+/* Heartbeat Animation for Upvoting */
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.35); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.25); }
+  70% { transform: scale(1); }
+}
+
+.animate-heart-beat {
+  animation: heartBeat 0.7s ease-in-out;
+}
+
+/* Tab Transition */
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content-enter {
+  animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 1000;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary-red);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 8px 24px rgba(218, 27, 27, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6) translateY(20px);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background: var(--primary-red-hover);
+  transform: scale(1.12) translateY(-4px);
+  box-shadow: 0 12px 28px rgba(218, 27, 27, 0.5);
+}
+
+/* Glow Pulse for Numbers / Badges */
+@keyframes subtleGlow {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(218, 27, 27, 0);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(218, 27, 27, 0.45);
+  }
+}
+
+.animate-glow-text {
+  animation: subtleGlow 3s infinite;
+}
+
+/* Background Animated Gradient Mesh */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-mesh {
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* Custom Scrollbar - Elsewedy Signature Theme */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F3F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #DA1B1B 0%, #B91C1C 100%);
+  border-radius: 9999px;
+  border: 2px solid #F1F3F7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #EF3131 0%, #DA1B1B 100%);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #DA1B1B #F1F3F7;
+}
+
