@@ -1,37 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Clock, Radio, Calendar } from 'lucide-react';
+import React from 'react';
+import { Calendar } from 'lucide-react';
 
 export default function CampusTicker() {
-  // Target deadline for admissions
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 24);
-  targetDate.setHours(23, 59, 59);
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 24,
-    hours: 8,
-    minutes: 42,
-    seconds: 15
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <div
       style={{
@@ -67,31 +37,54 @@ export default function CampusTicker() {
           <span style={{ color: '#4B5563' }}>Academic Term Active &bull; Fab Lab & Robotics Arena Open</span>
         </div>
 
-        {/* Right: Academic Term Countdown */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Right: Admission Period & Status */}
+        <a
+          href="#admissions"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            textDecoration: 'none',
+            color: 'inherit',
+            flexWrap: 'wrap'
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--primary-red)', fontWeight: 700 }}>
             <Calendar size={15} />
-            <span>Academic Term Registration:</span>
+            <span>Admission Time:</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'monospace', fontWeight: 700 }}>
-            <span style={{ backgroundColor: '#F3F4F6', padding: '3px 6px', borderRadius: '4px', color: '#111827' }}>
-              {String(timeLeft.days).padStart(2, '0')}d
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span
+              style={{
+                backgroundColor: '#FEF2F2',
+                border: '1px solid #FECACA',
+                color: 'var(--primary-red)',
+                padding: '2px 9px',
+                borderRadius: '6px',
+                fontWeight: 700,
+                fontSize: '12.5px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--primary-red)',
+                  display: 'inline-block'
+                }}
+              />
+              Has Not Started Yet
             </span>
-            <span>:</span>
-            <span style={{ backgroundColor: '#F3F4F6', padding: '3px 6px', borderRadius: '4px', color: '#111827' }}>
-              {String(timeLeft.hours).padStart(2, '0')}h
-            </span>
-            <span>:</span>
-            <span style={{ backgroundColor: '#F3F4F6', padding: '3px 6px', borderRadius: '4px', color: '#111827' }}>
-              {String(timeLeft.minutes).padStart(2, '0')}m
-            </span>
-            <span>:</span>
-            <span style={{ backgroundColor: '#FFF1F2', padding: '3px 6px', borderRadius: '4px', color: 'var(--primary-red)' }}>
-              {String(timeLeft.seconds).padStart(2, '0')}s
+            <span style={{ color: '#6B7280', fontSize: '13px', fontWeight: 500 }}>
+              &bull; Official applications opening soon via MoETE portal
             </span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );

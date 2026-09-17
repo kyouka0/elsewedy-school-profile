@@ -18,8 +18,8 @@ export const schoolInfo = {
     address: "6th of October City, Giza Governorate, Egypt",
     googleMapsUrl: "https://maps.app.goo.gl/dLjqLdGRW1b5zdKMA",
     hours: "Sunday - Thursday: 8:00 AM - 3:30 PM",
-    linkedin: "https://www.linkedin.com/company/el-sewedy-iats/posts/?feedView=all",
-    facebook: "https://www.facebook.com/ElsewedyIATS"
+    linkedin: "https://www.linkedin.com/company/el-sewedy-iats",
+    facebook: "https://www.facebook.com/profile.php?id=100083837165938"
   },
   stats: [
     { count: 60, suffix: "+", label: "Capstone Projects / Year", desc: "Production-ready solutions developed by our students", color: "#DA1B1B" },
@@ -168,7 +168,7 @@ export const facilitiesDetailed = [
     id: "entrepreneurship",
     category: "Career & Leadership",
     title: "3-Year Entrepreneurship Track",
-    image: "/assets/emp-Tkj8beBB.jpg",
+    image: "/assets/entrepreneurship-lecture.jpg",
     description: "A structured business incubation program guiding student Capstone teams to file patents, incorporate startups, and pitch before investors.",
     specs: ["Business Model Canvas Coaching", "Investor Pitch Days", "IP & Patent Counseling", "Seed Grant Acceleration Fund"],
     access: "Integrated throughout the 3-year academic journey"
