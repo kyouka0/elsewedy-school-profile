@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { specializationsDetailed } from '../data/schoolData';
+import { specializationsDetailed, arabicSpecializationsDetailed } from '../data/schoolData';
 import {
   Code,
   Cpu,
@@ -11,11 +11,14 @@ import {
   Sparkles
 } from 'lucide-react';
 import Reveal from './common/Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function CurriculumExplorer({ onNavigate }) {
+  const { isArabic } = useLanguage();
   const [activeTrackId, setActiveTrackId] = useState(specializationsDetailed[0].id);
+  const tracks = isArabic ? arabicSpecializationsDetailed : specializationsDetailed;
 
-  const activeTrack = specializationsDetailed.find((t) => t.id === activeTrackId) || specializationsDetailed[0];
+  const activeTrack = tracks.find((t) => t.id === activeTrackId) || tracks[0];
 
   const getTrackIcon = (iconName, color) => {
     switch (iconName) {
@@ -38,9 +41,9 @@ export default function CurriculumExplorer({ onNavigate }) {
         {/* Header */}
         <Reveal effect="fade-up">
           <div className="section-title-wrapper">
-            <h2>Academic Specializations & Curriculum</h2>
+            <h2>{isArabic ? 'التخصصات الأكاديمية والمناهج' : 'Academic Specializations & Curriculum'}</h2>
             <p>
-              3-year progressive dual curriculum benchmarked against international standards and direct Elsewedy engineering practices
+              {isArabic ? 'منهج مزدوج متدرج لمدة ٣ سنين بمعايير دولية وخبرة هندسية مباشرة من السويدي' : '3-year progressive dual curriculum benchmarked against international standards and direct Elsewedy engineering practices'}
             </p>
           </div>
         </Reveal>
@@ -57,7 +60,7 @@ export default function CurriculumExplorer({ onNavigate }) {
               marginBottom: '36px'
             }}
           >
-            {specializationsDetailed.map((track) => {
+            {tracks.map((track) => {
               const isSelected = track.id === activeTrackId;
               return (
                 <button
@@ -138,7 +141,7 @@ export default function CurriculumExplorer({ onNavigate }) {
               }}
             >
               <Sparkles size={16} />
-              <span>Pearson BTEC Dual Standard</span>
+              <span>{isArabic ? 'معيار Pearson BTEC المزدوج' : 'Pearson BTEC Dual Standard'}</span>
             </div>
           </div>
 
@@ -147,10 +150,10 @@ export default function CurriculumExplorer({ onNavigate }) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '18px' }}>
               <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#111827', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <BookOpen size={18} color={activeTrack.color} />
-                <span>3-Year Curriculum Progression</span>
+                <span>{isArabic ? 'تدرج المنهج على مدار ٣ سنين' : '3-Year Curriculum Progression'}</span>
               </h4>
               <span style={{ fontSize: '12.5px', color: '#6B7280', fontWeight: 600 }}>
-                تدرج المساقات والمقررات الدراسية
+                {isArabic ? 'تدرج المساقات والمقررات الدراسية' : 'Course and subject progression'}
               </span>
             </div>
 
@@ -190,7 +193,7 @@ export default function CurriculumExplorer({ onNavigate }) {
                         borderRadius: 'var(--radius-full)'
                       }}
                     >
-                      Year 0{idx + 1}
+                      {isArabic ? `السنة ٠${idx + 1}` : `Year 0${idx + 1}`}
                     </span>
                   </div>
 
@@ -247,7 +250,7 @@ export default function CurriculumExplorer({ onNavigate }) {
             {/* Tools Learned */}
             <div>
               <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', color: '#6B7280', marginBottom: '10px' }}>
-                Tools & Stacks Mastered:
+                {isArabic ? 'الأدوات والتقنيات:' : 'Tools & Stacks Mastered:'}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {activeTrack.tools.map((tool, idx) => (
@@ -273,7 +276,7 @@ export default function CurriculumExplorer({ onNavigate }) {
             {/* Target Careers */}
             <div>
               <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', color: '#6B7280', marginBottom: '10px' }}>
-                Graduate Career Opportunities:
+                {isArabic ? 'فرص العمل بعد التخرج:' : 'Graduate Career Opportunities:'}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {activeTrack.careerPaths.map((cp, idx) => (

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { facilitiesDetailed } from '../data/schoolData';
+import { facilitiesDetailed, arabicFacilitiesDetailed } from '../data/schoolData';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 import Reveal from './common/Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function FacilitiesSection() {
+  const { isArabic } = useLanguage();
+  const facilities = isArabic ? arabicFacilitiesDetailed : facilitiesDetailed;
   const [selectedFacility, setSelectedFacility] = useState(null);
 
   return (
@@ -11,9 +14,9 @@ export default function FacilitiesSection() {
       <div className="container">
         <Reveal effect="fade-up">
           <div className="section-title-wrapper">
-            <h2>School Facilities & Campus Infrastructure</h2>
+            <h2>{isArabic ? 'مرافق المدرسة والبنية التحتية' : 'School Facilities & Campus Infrastructure'}</h2>
             <p>
-              Equipped with state-of-the-art engineering laboratories, artistic performance studios, and athletic grounds
+              {isArabic ? 'مجهزة بمعامل هندسية متطورة واستوديوهات للفنون ومساحات رياضية' : 'Equipped with state-of-the-art engineering laboratories, artistic performance studios, and athletic grounds'}
             </p>
           </div>
         </Reveal>
@@ -26,7 +29,7 @@ export default function FacilitiesSection() {
             gap: '24px'
           }}
         >
-          {facilitiesDetailed.map((fac, idx) => (
+          {facilities.map((fac, idx) => (
             <Reveal key={fac.id} effect="fade-up" delay={(idx % 4) * 100}>
               <div
                 onClick={() => setSelectedFacility(fac)}
@@ -77,10 +80,10 @@ export default function FacilitiesSection() {
 
                   <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '12px', borderTop: '1px solid #F3F4F6' }}>
                     <span style={{ fontSize: '12.5px', color: 'var(--primary-red)', fontWeight: 600 }}>
-                      View Equipment Specs &rarr;
+                      {isArabic ? 'شوف تفاصيل التجهيزات ←' : 'View Equipment Specs →'}
                     </span>
                     <span style={{ fontSize: '11.5px', color: '#9CA3AF' }}>
-                      {fac.specs.length} key features
+                      {isArabic ? `${fac.specs.length} مميزات أساسية` : `${fac.specs.length} key features`}
                     </span>
                   </div>
                 </div>
@@ -134,7 +137,7 @@ export default function FacilitiesSection() {
 
                 <div style={{ marginBottom: '22px' }}>
                   <div style={{ fontSize: '13px', fontWeight: 700, color: '#111827', textTransform: 'uppercase', marginBottom: '10px' }}>
-                    Lab Equipment & Technologies:
+                    {isArabic ? 'التجهيزات والتقنيات:' : 'Lab Equipment & Technologies:'}
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     {selectedFacility.specs.map((sp, idx) => (
@@ -156,7 +159,7 @@ export default function FacilitiesSection() {
                     color: '#4B5563'
                   }}
                 >
-                  <strong>Access Policy: </strong>{selectedFacility.access}
+                  <strong>{isArabic ? 'سياسة الاستخدام: ' : 'Access Policy: '}</strong>{selectedFacility.access}
                 </div>
               </div>
             </div>

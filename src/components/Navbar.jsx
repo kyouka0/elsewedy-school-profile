@@ -30,7 +30,8 @@ import {
   Search,
   ExternalLink
 } from 'lucide-react';
-import { schoolHubs } from '../data/schoolHubsData';
+import { schoolHubs, arabicSchoolHubs } from '../data/schoolHubsData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const iconMap = {
   UserCheck,
@@ -53,6 +54,7 @@ const iconMap = {
 };
 
 export default function Navbar({ onNavigate }) {
+  const { isArabic, setLanguage, copy } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hubsDropdownOpen, setHubsDropdownOpen] = useState(false);
@@ -60,6 +62,7 @@ export default function Navbar({ onNavigate }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredHub, setHoveredHub] = useState(null);
   const hubsRef = useRef(null);
+  const hubs = isArabic ? arabicSchoolHubs : schoolHubs;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,12 +116,19 @@ export default function Navbar({ onNavigate }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const navLinks = [
-    { id: 'hero', label: 'Home', icon: Home, desc: 'Welcome & Overview' },
-    { id: 'about-overview', label: 'About School', icon: Info, desc: 'Leadership & Vision' },
-    { id: 'curriculum', label: 'Tracks & Subjects', icon: BookOpen, desc: '3-Year Progression' },
-    { id: 'facilities', label: 'Campus Facilities', icon: Building2, desc: 'Labs & Creative Studios' }
-  ];
+  const navLinks = isArabic
+    ? [
+        { id: 'hero', label: 'الرئيسية', icon: Home, desc: 'أهلًا بيك في مدرستنا' },
+        { id: 'about-overview', label: 'عن المدرسة', icon: Info, desc: 'رؤيتنا وقيادتنا' },
+        { id: 'curriculum', label: 'التخصصات والمناهج', icon: BookOpen, desc: 'رحلة تعليمية لمدة ٣ سنين' },
+        { id: 'facilities', label: 'مرافق المدرسة', icon: Building2, desc: 'معامل واستوديوهات إبداعية' }
+      ]
+    : [
+        { id: 'hero', label: 'Home', icon: Home, desc: 'Welcome & Overview' },
+        { id: 'about-overview', label: 'About School', icon: Info, desc: 'Leadership & Vision' },
+        { id: 'curriculum', label: 'Tracks & Subjects', icon: BookOpen, desc: '3-Year Progression' },
+        { id: 'facilities', label: 'Campus Facilities', icon: Building2, desc: 'Labs & Creative Studios' }
+      ];
 
   const handleLinkClick = (id) => {
     onNavigate(id);
@@ -126,7 +136,7 @@ export default function Navbar({ onNavigate }) {
     setHubsDropdownOpen(false);
   };
 
-  const filteredHubs = schoolHubs.filter((hub) => {
+  const filteredHubs = hubs.filter((hub) => {
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
     return (
@@ -153,6 +163,7 @@ export default function Navbar({ onNavigate }) {
     >
       {/* Centered Floating Island App Bar */}
       <header
+        className="topbar-header"
         style={{
           width: '100%',
           maxWidth: '1160px',
@@ -213,9 +224,8 @@ export default function Navbar({ onNavigate }) {
             display: 'none',
             alignItems: 'center',
             gap: '18px',
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)'
+            minWidth: 0,
+            justifyContent: 'center'
           }}
           className="desktop-nav"
         >
@@ -275,7 +285,7 @@ export default function Navbar({ onNavigate }) {
               aria-expanded={hubsDropdownOpen}
               aria-haspopup="true"
             >
-              <span>School Hubs</span>
+              <span>{isArabic ? 'منصات المدرسة' : 'School Hubs'}</span>
               <span
                 style={{
                   fontSize: '11px',
@@ -287,7 +297,7 @@ export default function Navbar({ onNavigate }) {
                   lineHeight: '1.2'
                 }}
               >
-                {schoolHubs.length}
+                {hubs.length}
               </span>
               <ChevronDown
                 size={14}
@@ -343,10 +353,10 @@ export default function Navbar({ onNavigate }) {
                     </div>
                     <div>
                       <div style={{ fontWeight: 800, fontSize: '13px', color: '#111827' }}>
-                        School Hubs & Systems
+                        {isArabic ? 'منصات وأنظمة المدرسة' : 'School Hubs & Systems'}
                       </div>
                       <div style={{ fontSize: '11px', color: '#6B7280' }}>
-                        Hover over any platform to see its description
+                        {isArabic ? 'مرر على أي منصة علشان تشوف وصفها' : 'Hover over any platform to see its description'}
                       </div>
                     </div>
                   </div>
@@ -360,7 +370,7 @@ export default function Navbar({ onNavigate }) {
                       borderRadius: '9999px'
                     }}
                   >
-                    {schoolHubs.length} Portals
+                    {isArabic ? `${hubs.length} بوابة` : `${hubs.length} Portals`}
                   </span>
                 </div>
 
@@ -380,7 +390,7 @@ export default function Navbar({ onNavigate }) {
                     <Search size={14} color="#9CA3AF" />
                     <input
                       type="text"
-                      placeholder="Search portals (e.g. SafeWay, RMS, TMS, Exam)..."
+                      placeholder={isArabic ? 'ابحث في المنصات...' : 'Search portals (e.g. SafeWay, RMS, TMS, Exam)...'}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       style={{
@@ -423,7 +433,7 @@ export default function Navbar({ onNavigate }) {
                 >
                   {filteredHubs.length === 0 ? (
                     <div style={{ textAlign: 'center', padding: '24px 12px', color: '#6B7280', fontSize: '12.5px' }}>
-                      No systems found matching "{searchQuery}"
+                      {isArabic ? `مفيش أنظمة مطابقة لـ "${searchQuery}"` : `No systems found matching "${searchQuery}"`}
                     </div>
                   ) : (
                     filteredHubs.map((hub) => {
@@ -579,7 +589,7 @@ export default function Navbar({ onNavigate }) {
                             gap: '4px'
                           }}
                         >
-                          <span>Open Portal</span>
+                          <span>{isArabic ? 'افتح المنصة' : 'Open Portal'}</span>
                           <ArrowRight size={11} />
                         </span>
                       </div>
@@ -606,7 +616,7 @@ export default function Navbar({ onNavigate }) {
                       }}
                     >
                       <Sparkles size={14} color="var(--primary-red)" style={{ flexShrink: 0 }} />
-                      <span>Hover over any system above to view its full description & details</span>
+                      <span>{isArabic ? 'مرر على أي نظام فوق علشان تشوف كل التفاصيل' : 'Hover over any system above to view its full description & details'}</span>
                     </div>
                   )}
                 </div>
@@ -615,8 +625,9 @@ export default function Navbar({ onNavigate }) {
           </div>
         </nav>
 
-        {/* Right: Apply Now CTA Button -> Admission System */}
-        <div style={{ display: 'none', alignItems: 'center' }} className="desktop-cta">
+        <div className="nav-actions">
+          {/* Right: Apply Now CTA Button -> Admission System */}
+          <div style={{ display: 'none', alignItems: 'center' }} className="desktop-cta">
           <a
             href="https://admission.sewedy.com.eg"
             target="_blank"
@@ -632,9 +643,30 @@ export default function Navbar({ onNavigate }) {
               gap: '6px'
             }}
           >
-            <span>Apply Now</span>
+            <span>{isArabic ? 'قدّم دلوقتي' : 'Apply Now'}</span>
             <ArrowRight size={14} />
           </a>
+          </div>
+
+          <button
+          onClick={() => setLanguage(isArabic ? 'en' : 'ar')}
+          aria-label={copy.switchAria}
+          title={copy.switchAria}
+          style={{
+            background: 'var(--primary-red-subtle)',
+            border: '1px solid rgba(218, 27, 27, 0.2)',
+            color: 'var(--primary-red)',
+            fontWeight: 800,
+            fontSize: '12px',
+            cursor: 'pointer',
+            padding: '7px 11px',
+            borderRadius: 'var(--radius-full)',
+            lineHeight: 1.2,
+            margin: 0
+          }}
+        >
+          {copy.switchLabel}
+          </button>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -685,6 +717,7 @@ export default function Navbar({ onNavigate }) {
 
       {/* 2. SideBar Panel (Sliding Drawer from Right) */}
       <aside
+        className="mobile-sidebar"
         style={{
           position: 'fixed',
           top: 0,
@@ -765,7 +798,7 @@ export default function Navbar({ onNavigate }) {
             }}
           >
             <Award size={16} />
-            <span>Top 10 International Applied Tech School</span>
+            <span>{isArabic ? 'من أفضل ١٠ مدارس تكنولوجيا تطبيقية دولية في مصر' : 'Top 10 International Applied Tech School'}</span>
           </div>
         </div>
 
@@ -858,10 +891,10 @@ export default function Navbar({ onNavigate }) {
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: '14.5px', color: '#111827' }}>
-                    School Hubs
+                    {isArabic ? 'منصات المدرسة' : 'School Hubs'}
                   </div>
                   <div style={{ fontSize: '11.5px', color: '#6B7280' }}>
-                    {schoolHubs.length} Integrated Systems
+                    {isArabic ? `${hubs.length} نظام متكامل` : `${hubs.length} Integrated Systems`}
                   </div>
                 </div>
               </div>
@@ -887,7 +920,7 @@ export default function Navbar({ onNavigate }) {
                   gap: '6px'
                 }}
               >
-                {schoolHubs.map((hub) => {
+                {hubs.map((hub) => {
                   const Icon = iconMap[hub.icon] || Layers;
                   return (
                     <a
@@ -969,17 +1002,17 @@ export default function Navbar({ onNavigate }) {
               textDecoration: 'none'
             }}
           >
-            <span>Apply Now</span>
+            <span>{isArabic ? 'قدّم دلوقتي' : 'Apply Now'}</span>
             <ArrowRight size={16} />
           </a>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#4B5563', marginBottom: '6px' }}>
             <Factory size={14} color="var(--primary-red)" />
-            <span>Dual Industrial Immersion at Elsewedy</span>
+            <span>{isArabic ? 'تدريب صناعي مزدوج داخل السويدي' : 'Dual Industrial Immersion at Elsewedy'}</span>
           </div>
 
           <div style={{ fontSize: '11px', color: '#9CA3AF', lineHeight: 1.5 }}>
-            Pearson BTEC Dual Standard &bull; Egyptian MoETE Partner
+            {isArabic ? 'معيار بيرسون بي تيك المزدوج • شريك وزارة التربية والتعليم المصرية' : 'Pearson BTEC Dual Standard • Egyptian MoETE Partner'}
           </div>
         </div>
       </aside>
@@ -1005,9 +1038,28 @@ export default function Navbar({ onNavigate }) {
           border-color: rgba(218, 27, 27, 0.25) !important;
         }
         @media (min-width: 980px) {
-          .desktop-nav { display: flex !important; }
+          .topbar-header {
+            display: grid !important;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 20px;
+          }
+          .desktop-nav {
+            display: flex !important;
+            position: static !important;
+            transform: none !important;
+            gap: clamp(10px, 1.4vw, 18px) !important;
+          }
           .desktop-cta { display: flex !important; }
+          .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+          }
           .mobile-toggle { display: none !important; }
+        }
+        @media (max-width: 979px) {
+          .nav-actions { display: flex; align-items: center; margin-left: auto; }
         }
       `}</style>
     </div>

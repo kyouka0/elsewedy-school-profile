@@ -1,7 +1,9 @@
 import React from 'react';
 import { Calendar } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function CampusTicker() {
+  const { isArabic } = useLanguage();
   return (
     <div
       style={{
@@ -33,8 +35,8 @@ export default function CampusTicker() {
               display: 'inline-block'
             }}
           />
-          <span style={{ fontWeight: 600, color: '#111827' }}>Campus Live Status:</span>
-          <span style={{ color: '#4B5563' }}>Academic Term Active &bull; Fab Lab & Robotics Arena Open</span>
+          <span style={{ fontWeight: 600, color: '#111827' }}>{isArabic ? 'حالة المدرسة:' : 'Campus Live Status:'}</span>
+          <span style={{ color: '#4B5563' }}>{isArabic ? 'الفصل الدراسي شغال • معمل التصنيع والروبوتكس مفتوحين' : 'Academic Term Active • Fab Lab & Robotics Arena Open'}</span>
         </div>
 
         {/* Right: Admission Period & Status */}
@@ -51,7 +53,7 @@ export default function CampusTicker() {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--primary-red)', fontWeight: 700 }}>
             <Calendar size={15} />
-            <span>Admission Time:</span>
+            <span>{isArabic ? 'مواعيد التقديم:' : 'Admission Time:'}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
@@ -78,10 +80,10 @@ export default function CampusTicker() {
                   display: 'inline-block'
                 }}
               />
-              Has Not Started Yet
+              {isArabic ? 'لسه ما بدأش' : 'Has Not Started Yet'}
             </span>
             <span style={{ color: '#6B7280', fontSize: '13px', fontWeight: 500 }}>
-              &bull; Official applications opening soon via MoETE portal
+              {isArabic ? '• التقديم الرسمي هيفتح قريبًا من خلال بوابة الوزارة' : '• Official applications opening soon via MoETE portal'}
             </span>
           </div>
         </a>

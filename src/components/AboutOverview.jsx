@@ -1,10 +1,13 @@
 import React from 'react';
-import { schoolInfo, partners } from '../data/schoolData';
+import { schoolInfo, arabicSchoolInfo, partners } from '../data/schoolData';
 import { Award, CheckCircle2, Quote, Sparkles, MapPin, ExternalLink } from 'lucide-react';
 import Reveal from './common/Reveal';
 import AnimatedCounter from './common/AnimatedCounter';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function AboutOverview() {
+  const { isArabic } = useLanguage();
+  const info = isArabic ? arabicSchoolInfo : schoolInfo;
   return (
     <div id="about-overview">
       {/* 1. What is El Sewedy International School? & Presentation Video */}
@@ -33,7 +36,7 @@ export default function AboutOverview() {
                 }}
               >
                 <Sparkles size={15} />
-                <span>Institutional Overview &bull; نظرة عامة</span>
+                <span>{isArabic ? 'نظرة عامة عن المدرسة' : 'Institutional Overview • نظرة عامة'}</span>
               </div>
               <h2
                 style={{
@@ -44,7 +47,7 @@ export default function AboutOverview() {
                   lineHeight: 1.2
                 }}
               >
-                What is <span style={{ color: 'var(--primary-red)' }}>El Sewedy International School</span>?
+                {isArabic ? <>إيه هي <span style={{ color: 'var(--primary-red)' }}>مدرسة السويدي الدولية</span>؟</> : <>What is <span style={{ color: 'var(--primary-red)' }}>El Sewedy International School</span>?</>}
               </h2>
               <p
                 style={{
@@ -54,7 +57,7 @@ export default function AboutOverview() {
                   marginBottom: '24px'
                 }}
               >
-                {schoolInfo.overview}
+                {info.overview}
               </p>
 
               <div
@@ -72,17 +75,17 @@ export default function AboutOverview() {
                   <div style={{ fontWeight: 800, fontSize: '20px', color: 'var(--primary-red)' }}>
                     <AnimatedCounter end={10} prefix="Top " />
                   </div>
-                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>Applied Tech School in Egypt</div>
+                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>{isArabic ? 'مدرسة تكنولوجيا تطبيقية في مصر' : 'Applied Tech School in Egypt'}</div>
                 </div>
                 <div className="card-interactive" style={{ padding: '10px', borderRadius: '8px', backgroundColor: '#FFFFFF', border: '1px solid #F3F4F6' }}>
                   <div style={{ fontWeight: 800, fontSize: '20px', color: '#111827' }}>Pearson BTEC</div>
-                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>British Dual Diploma Standards</div>
+                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>{isArabic ? 'معايير الدبلومة البريطانية المزدوجة' : 'British Dual Diploma Standards'}</div>
                 </div>
                 <div className="card-interactive" style={{ padding: '10px', borderRadius: '8px', backgroundColor: '#FFFFFF', border: '1px solid #F3F4F6' }}>
                   <div style={{ fontWeight: 800, fontSize: '20px', color: '#16A34A' }}>
                     <AnimatedCounter end={3} suffix="-Year Track" />
                   </div>
-                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>Grades 10, 11, and 12</div>
+                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '2px' }}>{isArabic ? 'الصفوف العاشر والحادي عشر والثاني عشر' : 'Grades 10, 11, and 12'}</div>
                 </div>
               </div>
             </Reveal>
@@ -159,7 +162,7 @@ export default function AboutOverview() {
                       transition: 'all 0.2s ease'
                     }}
                   >
-                    <span>Open in Maps</span>
+                    <span>{isArabic ? 'افتح الخريطة' : 'Open in Maps'}</span>
                     <ExternalLink size={13} />
                   </a>
                 </div>
@@ -204,13 +207,13 @@ export default function AboutOverview() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary-red)', fontWeight: 700, fontSize: '13px', textTransform: 'uppercase', marginBottom: '8px' }}>
                   <Quote size={18} />
-                  <span>Founder's Message &bull; كلمة المؤسس</span>
+                  <span>{isArabic ? 'كلمة المؤسس' : 'Founder\'s Message • كلمة المؤسس'}</span>
                 </div>
                 <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#111827', marginBottom: '4px' }}>
-                  {schoolInfo.founder.name}
+                  {info.founder.name}
                 </h3>
                 <div style={{ fontSize: '14px', color: '#6B7280', fontWeight: 500, marginBottom: '20px' }}>
-                  {schoolInfo.founder.role}
+                  {info.founder.role}
                 </div>
 
                 <blockquote
@@ -224,7 +227,7 @@ export default function AboutOverview() {
                     marginBottom: '20px'
                   }}
                 >
-                  "{schoolInfo.founder.quote}"
+                  "{info.founder.quote}"
                 </blockquote>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -234,7 +237,7 @@ export default function AboutOverview() {
                     style={{ height: '28px', width: 'auto', objectFit: 'contain' }}
                   />
                   <span style={{ fontSize: '13px', color: '#6B7280', fontWeight: 500 }}>
-                    Founder of El Sewedy Electrometer Group
+                    {isArabic ? 'مؤسس مجموعة السويدي إليكتروميتر' : 'Founder of El Sewedy Electrometer Group'}
                   </span>
                 </div>
               </div>
@@ -251,8 +254,8 @@ export default function AboutOverview() {
                   }}
                 >
                   <img
-                    src={schoolInfo.founder.avatar}
-                    alt={schoolInfo.founder.name}
+                    src={info.founder.avatar}
+                    alt={info.founder.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <div
@@ -266,8 +269,8 @@ export default function AboutOverview() {
                       color: '#FFFFFF'
                     }}
                   >
-                    <div style={{ fontWeight: 700, fontSize: '14px' }}>{schoolInfo.founder.name}</div>
-                    <div style={{ fontSize: '11px', color: '#D1D5DB' }}>Elsewedy Electrometer</div>
+                    <div style={{ fontWeight: 700, fontSize: '14px' }}>{info.founder.name}</div>
+                    <div style={{ fontSize: '11px', color: '#D1D5DB' }}>{isArabic ? 'السويدي إليكتروميتر' : 'Elsewedy Electrometer'}</div>
                   </div>
                 </div>
               </div>
@@ -302,7 +305,7 @@ export default function AboutOverview() {
                   letterSpacing: '0.04em'
                 }}
               >
-                Curriculum Core
+                {isArabic ? 'قلب المنهج' : 'Curriculum Core'}
               </div>
               <h2
                 style={{
@@ -313,7 +316,7 @@ export default function AboutOverview() {
                   lineHeight: 1.2
                 }}
               >
-                Software Programming & Electronic Systems
+                {isArabic ? 'برمجة السوفت وير والنظم الإلكترونية' : 'Software Programming & Electronic Systems'}
               </h2>
               <p
                 style={{
@@ -323,7 +326,7 @@ export default function AboutOverview() {
                   opacity: 0.95
                 }}
               >
-                The Electronic Systems (ES) and Computer Science (CS) specializations at our school provide essential knowledge and technical mastery for the digital age. The Electronic Systems (ES) specialization focuses on electronics engineering, smart circuit design, microcontrollers, and embedded IoT technologies—teaching students how to design, solder, program, and maintain advanced smart hardware, industrial robotics, and automated sensor systems. The Computer Science (CS) specialization emphasizes system analysis, database management, full-stack software development, and cybersecurity, preparing students to architect and deploy resilient digital platforms. Both programs equip students with hands-on technical skills and factory-floor experience, preparing them for premier engineering roles in the evolving tech industry.
+                {isArabic ? 'تخصصا النظم الإلكترونية وعلوم الحاسب بيقدّموا معرفة ومهارات تقنية أساسية لعصرنا الرقمي. النظم الإلكترونية بتركز على هندسة الإلكترونيات وتصميم الدوائر الذكية والمتحكمات وإنترنت الأشياء، وبتعلّم الطلاب التصميم واللحام والبرمجة وصيانة الأنظمة الذكية والروبوتات الصناعية. علوم الحاسب بتركز على تحليل النظم وقواعد البيانات وتطوير البرمجيات المتكاملة والأمن السيبراني. المسارين بيدّوا الطالب خبرة عملية ومهارات فنية وتدريب داخل المصنع، وبيجهزوه لأدوار هندسية قوية في سوق التكنولوجيا.' : 'The Electronic Systems (ES) and Computer Science (CS) specializations at our school provide essential knowledge and technical mastery for the digital age. The Electronic Systems (ES) specialization focuses on electronics engineering, smart circuit design, microcontrollers, and embedded IoT technologies—teaching students how to design, solder, program, and maintain advanced smart hardware, industrial robotics, and automated sensor systems. The Computer Science (CS) specialization emphasizes system analysis, database management, full-stack software development, and cybersecurity, preparing students to architect and deploy resilient digital platforms. Both programs equip students with hands-on technical skills and factory-floor experience, preparing them for premier engineering roles in the evolving tech industry.'}
               </p>
             </div>
           </Reveal>
@@ -360,14 +363,14 @@ export default function AboutOverview() {
             <Reveal effect="fade-right">
               <div>
                 <div className="section-title-wrapper" style={{ textAlign: 'left', marginBottom: '28px' }}>
-                  <h2 style={{ textAlign: 'left' }}>Why El Sewedy International School?</h2>
+                  <h2 style={{ textAlign: 'left' }}>{isArabic ? 'ليه تختار مدرسة السويدي الدولية؟' : 'Why El Sewedy International School?'}</h2>
                   <p style={{ margin: '12px 0 0 0' }}>
-                    A transformative secondary education standard combining academic rigor with industry dual training.
+                    {isArabic ? 'تعليم ثانوي مميز بيجمع الدراسة القوية مع التدريب المزدوج داخل الصناعة.' : 'A transformative secondary education standard combining academic rigor with industry dual training.'}
                   </p>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                  {schoolInfo.whyUs.map((point, idx) => (
+                  {info.whyUs.map((point, idx) => (
                     <div
                       key={idx}
                       className="card-interactive"
@@ -438,7 +441,7 @@ export default function AboutOverview() {
               textAlign: 'center'
             }}
           >
-            {schoolInfo.stats.map((stat, idx) => (
+            {info.stats.map((stat, idx) => (
               <Reveal key={idx} effect="zoom-in" delay={idx * 120}>
                 <div
                   className="sewedy-card card-interactive"

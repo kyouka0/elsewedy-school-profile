@@ -63,6 +63,23 @@ body {
   overflow-x: hidden;
 }
 
+/* Cairo has a clean, geometric Arabic letterform that pairs naturally with Rubik. */
+html.arabic body,
+html.arabic button,
+html.arabic input,
+html.arabic textarea,
+html.arabic select {
+  font-family: 'Cairo', 'Tahoma', sans-serif;
+}
+
+html[dir='rtl'] .scroll-progress-bar { left: auto; right: 0; }
+html[dir='rtl'] .toast-container { left: 24px; right: auto; }
+html[dir='rtl'] .toast { border-left: 0; border-right: 4px solid var(--primary-red); }
+html[dir='rtl'] .back-to-top-btn { left: auto; right: 28px; }
+html[dir='rtl'] .hub-item-hover:hover { transform: translateX(-3px); }
+html[dir='rtl'] .mobile-sidebar { left: 0 !important; right: auto !important; box-shadow: 10px 0 35px rgba(0, 0, 0, 0.2) !important; }
+html[dir='rtl'] .mobile-sidebar[style*='translateX(100%)'] { transform: translateX(-100%) !important; }
+
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family);

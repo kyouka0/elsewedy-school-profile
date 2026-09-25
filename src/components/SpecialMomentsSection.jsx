@@ -1,9 +1,12 @@
 import React from 'react';
 import { Calendar, Quote } from 'lucide-react';
-import { specialMoments } from '../data/schoolData';
+import { specialMoments, arabicSpecialMoments } from '../data/schoolData';
 import Reveal from './common/Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function SpecialMomentsSection() {
+  const { isArabic } = useLanguage();
+  const moments = isArabic ? arabicSpecialMoments : specialMoments;
   return (
     <section
       id="special-moments"
@@ -17,9 +20,9 @@ export default function SpecialMomentsSection() {
         {/* Section Title Header */}
         <Reveal effect="fade-up">
           <div className="section-title-wrapper dark">
-            <h2 style={{ color: 'var(--primary-red)' }}>Special Moments & Legacy</h2>
+            <h2 style={{ color: 'var(--primary-red)' }}>{isArabic ? 'لحظات مميزة وإرث المدرسة' : 'Special Moments & Legacy'}</h2>
             <p>
-              Celebrating our historical milestones, distinguished international delegations, and computational achievements
+              {isArabic ? 'بنحتفل بمحطاتنا المهمة وزياراتنا الدولية وإنجازاتنا في البرمجة' : 'Celebrating our historical milestones, distinguished international delegations, and computational achievements'}
             </p>
           </div>
         </Reveal>
@@ -32,7 +35,7 @@ export default function SpecialMomentsSection() {
             gap: '36px'
           }}
         >
-          {specialMoments.map((moment, idx) => (
+          {moments.map((moment, idx) => (
             <Reveal key={moment.id} effect="fade-up" delay={idx * 140}>
               <div
                 className="card-interactive"

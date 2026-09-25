@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, GraduationCap, ShieldCheck, Globe, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, GraduationCap, ShieldCheck, Globe, ChevronDown, Facebook } from 'lucide-react';
 import { schoolInfo } from '../data/schoolData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const HERO_BACKGROUNDS = [
   {
@@ -26,6 +27,7 @@ const HERO_BACKGROUNDS = [
 ];
 
 export default function HeroSection({ onNavigate }) {
+  const { isArabic } = useLanguage();
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
 
   // Preload background photos
@@ -139,7 +141,7 @@ export default function HeroSection({ onNavigate }) {
               }}
             />
             <span style={{ fontSize: '13.5px', color: '#FFFFFF', fontWeight: 600, letterSpacing: '0.01em' }}>
-              Top 10 International Applied Technology School in Egypt &bull; شراكة وزارة التربية والتعليم
+              {isArabic ? 'من أفضل ١٠ مدارس تكنولوجيا تطبيقية دولية في مصر • شراكة مع وزارة التربية والتعليم' : 'Top 10 International Applied Technology School in Egypt • Ministry of Education partner'}
             </span>
           </div>
 
@@ -155,7 +157,7 @@ export default function HeroSection({ onNavigate }) {
               textShadow: '0 4px 20px rgba(0,0,0,0.6)'
             }}
           >
-            El Sewedy International School
+            {isArabic ? 'مدرسة السويدي الدولية' : 'El Sewedy International School'}
           </h1>
 
           {/* Subtitle Badge */}
@@ -174,7 +176,7 @@ export default function HeroSection({ onNavigate }) {
               border: '1px solid rgba(255, 255, 255, 0.2)'
             }}
           >
-            {schoolInfo.subTitle}
+            {isArabic ? 'للتكنولوجيا التطبيقية والبرمجيات' : schoolInfo.subTitle}
           </div>
 
           {/* Tagline */}
@@ -188,7 +190,9 @@ export default function HeroSection({ onNavigate }) {
               textShadow: '0 2px 8px rgba(0,0,0,0.6)'
             }}
           >
-            {schoolInfo.tagline}. Leading Egyptian secondary education through dual industrial engineering training, British technical curriculum standards, and guaranteed career readiness.
+            {isArabic
+              ? 'أحسن اختيار لمستقبلك في التكنولوجيا. بنقدملك تعليم ثانوي متميز يجمع بين التدريب الهندسي داخل المصانع، ومعايير المناهج البريطانية، وتأهيل حقيقي لسوق العمل.'
+              : `${schoolInfo.tagline}. Leading Egyptian secondary education through dual industrial engineering training, British technical curriculum standards, and guaranteed career readiness.`}
           </p>
 
           {/* Action CTAs with Micro-Animations & Shimmer */}
@@ -203,33 +207,25 @@ export default function HeroSection({ onNavigate }) {
                 fontWeight: 700
               }}
             >
-              <span>Explore Academic Tracks</span>
+              <span>{isArabic ? 'اكتشف التخصصات' : 'Explore Academic Tracks'}</span>
               <ArrowRight size={18} />
             </button>
 
-            <button
-              onClick={() => onNavigate('curriculum')}
+            <a
+              href="https://www.facebook.com/profile.php?id=100083837165938"
+              target="_blank"
+              rel="noopener noreferrer"
               className="sewedy-btn sewedy-btn-white btn-shimmer"
               style={{
                 padding: '14px 28px',
                 fontSize: '16px',
-                borderRadius: 'var(--radius-full)'
+                borderRadius: 'var(--radius-full)',
+                textDecoration: 'none'
               }}
             >
-              <span>View Curriculum Subjects</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('about-overview')}
-              className="sewedy-btn sewedy-btn-outline"
-              style={{
-                padding: '14px 24px',
-                fontSize: '15px',
-                borderRadius: 'var(--radius-full)'
-              }}
-            >
-              <span>Watch Campus Overview</span>
-            </button>
+              <Facebook size={18} />
+              <span>{isArabic ? 'تابعنا على فيسبوك' : 'Follow us on Facebook'}</span>
+            </a>
           </div>
 
           {/* Quick Institutional Highlights */}
@@ -257,7 +253,7 @@ export default function HeroSection({ onNavigate }) {
               }}
             >
               <GraduationCap size={16} color="var(--primary-red-bright)" />
-              <span>Dual Diploma (Pearson BTEC)</span>
+              <span>{isArabic ? 'دبلومة مزدوجة (Pearson BTEC)' : 'Dual Diploma (Pearson BTEC)'}</span>
             </div>
 
             <div
@@ -275,7 +271,7 @@ export default function HeroSection({ onNavigate }) {
               }}
             >
               <ShieldCheck size={16} color="var(--primary-red-bright)" />
-              <span>MoETE &amp; USAID Partnered</span>
+              <span>{isArabic ? 'شراكة مع التعليم وUSAID' : 'MoETE & USAID Partnered'}</span>
             </div>
 
             <div
@@ -293,7 +289,7 @@ export default function HeroSection({ onNavigate }) {
               }}
             >
               <Globe size={16} color="var(--primary-red-bright)" />
-              <span>100% English Technical Instruction</span>
+              <span>{isArabic ? 'تعليم تقني باللغة الإنجليزية' : '100% English Technical Instruction'}</span>
             </div>
           </div>
         </div>
@@ -321,7 +317,7 @@ export default function HeroSection({ onNavigate }) {
           justifyContent: 'center',
           transition: 'background-color 0.2s, transform 0.2s'
         }}
-        aria-label="Scroll down to overview"
+        aria-label={isArabic ? 'انزل لنظرة عامة' : 'Scroll down to overview'}
       >
         <ChevronDown size={22} />
       </button>

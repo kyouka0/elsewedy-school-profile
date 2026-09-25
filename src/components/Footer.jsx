@@ -1,8 +1,10 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Clock, Linkedin, Facebook, ArrowUp } from 'lucide-react';
 import { schoolInfo } from '../data/schoolData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Footer({ onNavigate }) {
+  const { isArabic } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -38,13 +40,13 @@ export default function Footer({ onNavigate }) {
                   EL SEWEDY <span style={{ color: 'var(--primary-red)' }}>IATS</span>
                 </div>
                 <div style={{ fontSize: '11px', color: '#9CA3AF' }}>
-                  Applied Technology & Software
+                  {isArabic ? 'التكنولوجيا التطبيقية والبرمجيات' : 'Applied Technology & Software'}
                 </div>
               </div>
             </div>
 
             <p style={{ color: '#9CA3AF', fontSize: '14px', lineHeight: 1.7, marginBottom: '20px' }}>
-              El Sewedy International School for Applied Technology and Software. Ranked among Egypt's top ten international schools for applied technology.
+              {isArabic ? 'مدرسة السويدي الدولية للتكنولوجيا التطبيقية والبرمجيات، من أفضل عشر مدارس تكنولوجيا تطبيقية دولية في مصر.' : 'El Sewedy International School for Applied Technology and Software. Ranked among Egypt\'s top ten international schools for applied technology.'}
             </p>
 
             <div style={{ display: 'flex', gap: '10px' }}>
@@ -97,15 +99,15 @@ export default function Footer({ onNavigate }) {
           {/* Column 2: Quick Links */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 700, marginBottom: '20px' }}>
-              Quick Navigation
+              {isArabic ? 'روابط سريعة' : 'Quick Navigation'}
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
-                { id: 'hero', label: 'Home' },
-                { id: 'about-overview', label: 'About Us' },
-                { id: 'curriculum', label: 'Academic Tracks & Curriculum' },
-                { id: 'facilities', label: 'School Facilities' },
-                { id: 'special-moments', label: 'Special Moments' }
+                { id: 'hero', label: isArabic ? 'الرئيسية' : 'Home' },
+                { id: 'about-overview', label: isArabic ? 'عن المدرسة' : 'About Us' },
+                { id: 'curriculum', label: isArabic ? 'التخصصات والمناهج' : 'Academic Tracks & Curriculum' },
+                { id: 'facilities', label: isArabic ? 'مرافق المدرسة' : 'School Facilities' },
+                { id: 'special-moments', label: isArabic ? 'لحظات مميزة' : 'Special Moments' }
               ].map((item) => (
                 <button
                   key={item.id}
@@ -132,7 +134,7 @@ export default function Footer({ onNavigate }) {
           {/* Column 3: Contact Channels */}
           <div>
             <h4 style={{ color: 'var(--primary-red)', fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>
-              Contact El Sewedy IATS
+              {isArabic ? 'تواصل مع السويدي للتكنولوجيا التطبيقية' : 'Contact El Sewedy IATS'}
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14px' }}>
               <a
@@ -199,10 +201,10 @@ export default function Footer({ onNavigate }) {
           {/* Column 4: Accredited Partners & Logos */}
           <div>
             <h4 style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 700, marginBottom: '20px' }}>
-              Accredited Governance
+              {isArabic ? 'جهات الاعتماد' : 'Accredited Governance'}
             </h4>
             <p style={{ color: '#9CA3AF', fontSize: '13px', lineHeight: 1.6, marginBottom: '16px' }}>
-              Dual certification supervised by the Egyptian Ministry of Education & Technical Education and El Sewedy Electrometer Group.
+              {isArabic ? 'شهادة مزدوجة تحت إشراف وزارة التربية والتعليم والتعليم الفني ومجموعة السويدي إليكتروميتر.' : 'Dual certification supervised by the Egyptian Ministry of Education & Technical Education and El Sewedy Electrometer Group.'}
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <img
@@ -234,7 +236,7 @@ export default function Footer({ onNavigate }) {
           }}
         >
           <div>
-            &copy; {new Date().getFullYear()} El Sewedy International School for Applied Technology and Software. All rights reserved.
+            &copy; {new Date().getFullYear()} {isArabic ? 'مدرسة السويدي الدولية للتكنولوجيا التطبيقية والبرمجيات. جميع الحقوق محفوظة.' : 'El Sewedy International School for Applied Technology and Software. All rights reserved.'}
           </div>
 
           <button
@@ -255,7 +257,7 @@ export default function Footer({ onNavigate }) {
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--primary-red)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)')}
           >
-            <span>Back to top</span>
+            <span>{isArabic ? 'الرجوع للأعلى' : 'Back to top'}</span>
             <ArrowUp size={13} />
           </button>
         </div>
