@@ -101,7 +101,15 @@ export default function App() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       {/* Top Animated Scroll Progress Line */}
-      <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+      <div
+        className="scroll-progress-bar"
+        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        role="progressbar"
+        aria-label="Page scroll progress"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(scrollProgress)}
+      />
 
       {/* Top Navigation */}
       <Navbar onNavigate={scrollToSection} />

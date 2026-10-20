@@ -60,18 +60,30 @@ export default function Navbar({ onNavigate }) {
   const [mobileHubsOpen, setMobileHubsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [hoveredHub, setHoveredHub] = useState(null);
+  const [navVisible, setNavVisible] = useState(true);
   const hubsRef = useRef(null);
+  const lastScrollY = useRef(0);
   const hubs = isArabic ? arabicSchoolHubs : schoolHubs;
 
   useEffect(() => {
     const handleScroll = () => {
+      const currentScrollY = Math.max(0, window.scrollY);
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY <= 24 || scrollDelta < -4 || mobileOpen) {
+        setNavVisible(true);
+      } else if (scrollDelta > 4) {
+        setNavVisible(false);
+      }
+      lastScrollY.current = currentScrollY;
+
       if (hubsDropdownOpen) {
         setHubsDropdownOpen(false);
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hubsDropdownOpen]);
+  }, [hubsDropdownOpen, mobileOpen]);
 
   // Click outside to close hubs dropdown
   useEffect(() => {
@@ -148,12 +160,15 @@ export default function Navbar({ onNavigate }) {
   return (
     <div
       style={{
-        position: 'sticky',
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         zIndex: 1000,
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        transform: navVisible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 280ms cubic-bezier(0.22, 1, 0.36, 1)',
+        willChange: 'transform'
       }}
     >
       {/* Clean full-width navigation bar */}
