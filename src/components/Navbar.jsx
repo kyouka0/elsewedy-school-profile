@@ -441,7 +441,6 @@ export default function Navbar({ onNavigate }) {
                           href={hub.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          title={hub.description}
                           onClick={() => setHubsDropdownOpen(false)}
                           onMouseEnter={() => setHoveredHub(hub)}
                           onMouseLeave={() => setHoveredHub(null)}
