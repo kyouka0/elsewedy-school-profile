@@ -54,17 +54,17 @@ export const specializationsDetailed = [
       {
         year: "Year 1 (Junior)",
         focus: "Foundations & Programming",
-        modules: ["Logic and OS", "Testing", "C++", "Python"]
+        modules: ["Identify Computer System Components", "Performs the Logical Circuits", "Develop simple programs", "Math Discrete", "Programs Advanced Software Building Blocks", "Design a simple user interface", "Testing A simple program"]
       },
       {
         year: "Year 2 (Wheeler)",
         focus: "Software Engineering & Architecture",
-        modules: ["Problem Solving", "Desktop App", "Web MVC"]
+        modules: ["Using Programming as a Problem-Solving Tool", "Building Databases", "Engineering Software", "Developing Different Desktop Software", "Developing Different Web applications", "Engineering Software"]
       },
       {
         year: "Year 3 (Senior)",
         focus: "Advanced Systems, Mobile & IoT",
-        modules: ["Flutter and Web API", "Multimedia", "Embedded System", "IoT"]
+        modules: ["Developing Different API Applications", "Developing Different Mobile Software", "Builds Multimedia Algorithms", "Engineering Software", "Embedded Firmware Development", "Code Modification", "Develops different software integrated into IoT systems in the work environment", "Engineering Software"]
       }
     ],
     tools: ["C++", "Python", "Desktop App Frameworks", "Web MVC", "Flutter", "Web API", "Embedded Systems", "IoT"],
@@ -82,17 +82,17 @@ export const specializationsDetailed = [
       {
         year: "Year 1 (Junior)",
         focus: "Electrical & Hardware Fundamentals",
-        modules: ["Circuit Theory & Electronics 101", "C / C++ for Embedded Systems", "Digital Logic & Microprocessor Architecture", "Sensors, Actuators & Signal Processing"]
+        modules: ["Identify Computer System Components", "Performs the Logical Circuits", "Develop simple programs", "Math Discrete", "Programs Advanced Software Building Blocks", "Design a simple user interface", "Testing A simple program"]
       },
       {
         year: "Year 2 (Wheeler)",
         focus: "Microcontrollers & Network Telemetry",
-        modules: ["ESP32 & ARM Cortex Programming", "IoT Networking Protocols (MQTT, CoAP, LoRa)", "PCB Design with KiCAD & Soldering", "RTOS (Real-Time Operating Systems)"]
+        modules: ["Using Programming as a Problem-Solving Tool", "Implements Electronic Components and Circuits", "Engineering Software", "Understanding Microcontroller Architecture", "Develop Embedded C Program", "Develop Basic Microcontroller Programming and Interfacing"]
       },
       {
         year: "Year 3 (Senior)",
         focus: "Industrial Automation & Smart Grids",
-        modules: ["Smart Metering & Grid Telemetry", "Industrial PLC & SCADA Systems", "Annual Hardware Capstone Project", "Factory Rotations at Elsewedy Electrometer"]
+        modules: ["Implement Communication Protocols in Microcontrollers", "Deploying and Designing Real-Time Operating Systems", "Implement Microcontrollers Interfacing with Sensors and Actuators", "Fabrication and Testing PCB with Microcontrollers", "Engineering Software"]
       }
     ],
     tools: ["Embedded C/C++", "ESP32", "STM32", "KiCAD", "MQTT", "Arduino", "Oscilloscopes", "Logic Analyzers"],

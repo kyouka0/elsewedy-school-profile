@@ -252,24 +252,6 @@ export default function HeroSection({ onNavigate }) {
                 border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
-              <GraduationCap size={16} color="var(--primary-red-bright)" />
-              <span>{isArabic ? 'دبلومة مزدوجة (Pearson BTEC)' : 'Dual Diploma (Pearson BTEC)'}</span>
-            </div>
-
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: '#FFFFFF',
-                fontSize: '14px',
-                fontWeight: 500,
-                backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                padding: '6px 14px',
-                borderRadius: 'var(--radius-full)',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
-              }}
-            >
               <ShieldCheck size={16} color="var(--primary-red-bright)" />
               <span>{isArabic ? 'شراكة مع التعليم وUSAID' : 'MoETE & USAID Partnered'}</span>
             </div>

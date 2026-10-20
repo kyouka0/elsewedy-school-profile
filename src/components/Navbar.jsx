@@ -56,7 +56,6 @@ const iconMap = {
 export default function Navbar({ onNavigate }) {
   const { isArabic, setLanguage, copy } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [hubsDropdownOpen, setHubsDropdownOpen] = useState(false);
   const [mobileHubsOpen, setMobileHubsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,7 +65,6 @@ export default function Navbar({ onNavigate }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
       if (hubsDropdownOpen) {
         setHubsDropdownOpen(false);
       }
@@ -150,39 +148,34 @@ export default function Navbar({ onNavigate }) {
   return (
     <div
       style={{
-        position: 'fixed',
-        top: '16px',
+        position: 'sticky',
+        top: 0,
         left: 0,
         right: 0,
         zIndex: 1000,
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '0 16px',
         pointerEvents: 'none'
       }}
     >
-      {/* Centered Floating Island App Bar */}
+      {/* Clean full-width navigation bar */}
       <header
         className="topbar-header"
         style={{
           width: '100%',
-          maxWidth: '1160px',
-          height: '62px',
-          backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.97)' : 'rgba(255, 255, 255, 0.93)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          borderRadius: '9999px',
-          border: '1px solid rgba(229, 231, 235, 0.9)',
-          boxShadow: scrolled
-            ? '0 10px 35px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04)'
-            : '0 6px 25px rgba(0, 0, 0, 0.06)',
+          height: '76px',
+          backgroundColor: 'rgba(255, 255, 255, 0.94)',
+          backdropFilter: 'saturate(180%) blur(14px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(14px)',
+          borderRadius: 0,
+          border: 'none',
+          borderBottom: '1px solid rgba(218, 27, 27, 0.14)',
+          boxShadow: '0 4px 18px rgba(17, 24, 39, 0.055)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 20px',
+          padding: '0 max(24px, calc((100vw - 1160px) / 2))',
           position: 'relative',
           pointerEvents: 'auto',
-          transition: 'all 0.25s ease'
+          transition: 'background-color 0.2s ease'
         }}
       >
         {/* Left: Brand Logo & Name */}
@@ -422,12 +415,15 @@ export default function Navbar({ onNavigate }) {
 
                 {/* Systems List */}
                 <div
+                  data-lenis-prevent
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '4px',
                     maxHeight: '320px',
                     overflowY: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    overscrollBehaviorY: 'contain',
                     paddingRight: '4px'
                   }}
                 >
@@ -546,7 +542,9 @@ export default function Navbar({ onNavigate }) {
                     backgroundColor: hoveredHub ? 'rgba(218, 27, 27, 0.04)' : '#F9FAFB',
                     border: hoveredHub ? '1px solid rgba(218, 27, 27, 0.25)' : '1px solid #E5E7EB',
                     transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                    minHeight: '76px',
+                    height: '76px',
+                    boxSizing: 'border-box',
+                    overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center'
